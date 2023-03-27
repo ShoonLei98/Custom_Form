@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomForm;
+use App\Mail\CustomFormMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CustomFormController extends Controller
 {
@@ -46,6 +48,13 @@ class CustomFormController extends Controller
         $form->birth_date = $request->birth_date;
         $form->gender = $request->gender;
         $form->save();
+
+        $mailData = [
+            'title' => 'Mail from Custom Form',
+            'body' => 'This is for testing email using smtp.'
+        ];
+         
+        Mail::to(auth()->user()->email)->send(new CustomFormMail($mailData));
 
         return back()->with('success' , "Successfully submitted.");
     }
