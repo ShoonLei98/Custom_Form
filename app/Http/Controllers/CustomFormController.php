@@ -33,8 +33,8 @@ class CustomFormController extends Controller
     {
         //to validate the data from input fields
         $validator = validator($request->all(), [
-            'phone'  => 'numeric',
-            'birth_date' => 'date',
+            'phone'  => ['numeric', 'nullable'],
+            'birth_date' => ['date', 'nullable'],
         ]);
 
         if($validator->fails()){
@@ -56,7 +56,7 @@ class CustomFormController extends Controller
          
         Mail::to(auth()->user()->email)->send(new CustomFormMail($mailData));
 
-        return back()->with('success' , "Successfully submitted.");
+        return back()->with('success' , "Successfully submitted and email was sent.");
     }
 
     /**

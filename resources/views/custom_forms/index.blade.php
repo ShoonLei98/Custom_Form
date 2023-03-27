@@ -148,19 +148,34 @@
             {
                 $("#name").show();
             }
+            else
+            {
+                $("#name").hide();
+            }
             if($('#chkPhone').is(':checked'))
             {
                 $("#phone").show();
+            }
+            else
+            {
+                $("#phone").hide();
             }
             if($('#chkDOB').is(':checked'))
             {
                 $("#DOB").show();
             }
+            else
+            {
+                $("#DOB").hide();
+            }
             if($('#chkGender').is(':checked'))
             {
                 $("#gender").show();
             }
-            
+            else
+            {
+                $("#gender").hide();
+            }            
         });
     });
 </script>

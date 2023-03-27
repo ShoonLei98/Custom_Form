@@ -15,8 +15,7 @@ class MailController extends Controller
             'body' => 'This is for testing email using smtp.'
         ];
          
-        Mail::to('shoonleiwai1@gmail.com')->send(new CustomFormMail($mailData));
+        Mail::to(auth()->user()->email)->send(new CustomFormMail($mailData));
            
-        dd("Email is sent successfully.");
     }
 }
